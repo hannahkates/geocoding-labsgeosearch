@@ -9,7 +9,7 @@ import json
 # house number?
 col_street_num = 6
 # street name?
-col_street_num = 7
+col_street_name = 7
 # borough?
 col_boro = 2
 
@@ -27,18 +27,16 @@ with open(infile, 'r') as i:
         writer = csv.writer(o, lineterminator='\n')        
         all = []
         row = next(reader, None)
-        row.extend(['lat_geoclient', 'long_geoclient', 'bbl_geoclient', 'bin_geoclient'])
+        row.extend(['latitude', 'longitude', 'bbl', 'bin'])
         all.append(row)
         
         index = 1
         try:
             for row in reader:                
 
-                street_num = row[col_street_num]
-                street_name = row[col_street_num]
-                boro = row[col_boro]
+                input_address = row[col_street_num] + ' ' + row[col_street_name] + ' ' + row[col_boro]
 
-                url = ('http://geosearch.planninglabs.nyc/v1/search?text=' + street_num + ' ' + street_name + ' ' + boro + '&size=1')
+                url = ('http://geosearch.planninglabs.nyc/v1/search?text=' + input_address + '&size=1')
                 response = urllib2.urlopen(url)
                 data = json.load(response)
                 row_lat = data['features'][0]['geometry']['coordinates'][1]
@@ -46,7 +44,7 @@ with open(infile, 'r') as i:
                 row_bbl = data['features'][0]['properties']['pad_bbl']
                 row_bin = data['features'][0]['properties']['pad_bin']
                 
-                print "%s, Address: %s %s, BBL: %s, BIN: %s" % (index, street_num, street_name, row_bbl, row_bin)                
+                print "%s, Address: %s, BBL: %s, BIN: %s" % (index, input_address, row_bbl, row_bin)                
                 row.extend([row_lat, row_long, row_bbl, row_bin])
                 all.append(row)
 
