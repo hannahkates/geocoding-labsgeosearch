@@ -3,7 +3,7 @@ import urllib2
 import csv
 import json
 
-# Run script by running: `python geoclient.py input.csv output.csv` in the command line, filling in the correct fine names
+# Run script by running: `python geosearch.py input.csv output.csv` in the command line, filling in the correct fine names
 
 # Important variables: In which column number (starting from zero) is the...
 # house number?
