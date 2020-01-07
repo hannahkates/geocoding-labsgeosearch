@@ -8,8 +8,8 @@ Python script for batch geocoding using NYC Planning Labs' [Geosearch API](https
 4. Update the column numbers for the house number, street name, and borough columns in the python script on lines [10-14](https://github.com/hannahkates/geocoding-labsgeosearch/blob/master/geosearch.py#L10).
 5. Via the command line, navigate inside the folder.
 6. Run the script by running `python geosearch_v.py input.csv output.csv` in the command line, filling in the appropriate vairables: 
-- `_v` version for your Python version
-- input csv file name
-- preferred output file name
+     - `_v` version for your Python version
+     - input csv file name
+     - preferred output file name
 
 If the script is running correctly, you will see it printing the results in the terminal for each row it iterates through.
